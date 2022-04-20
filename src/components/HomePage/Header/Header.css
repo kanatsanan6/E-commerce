@@ -1,0 +1,88 @@
+.header {
+  background-color: white;
+  height: 70px;
+  display: flex;
+  margin-bottom: 50px;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__container {
+  /* background-color: blue; */
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Logo */
+.header__containerLogo {
+  /* background-color: red; */
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.header__containerLogo:hover {
+  text-decoration: none;
+}
+.header__containerLogo > h1 {
+  color: #e45826;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Link */
+.header__containerLink {
+  /* background-color: pink; */
+  height: 100%;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+/* Home */
+.header__containerLinkHome > img {
+  height: 27px;
+}
+/* Cart */
+.header__containerLinkCart {
+  display: flex;
+  align-items: baseline;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.header__containerLinkCart:hover {
+  text-decoration: none;
+}
+.header__containerLinkCart > img {
+  height: 27px;
+}
+.header__containerCartNumber {
+  background-color: #26b2e4;
+  border-radius: 7px;
+  color: white;
+  height: 17px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+/* Button */
+.header__containerLinkButton {
+  cursor: pointer;
+  background-color: #e45826;
+  border: none;
+  border-radius: 7px;
+  width: 100px;
+  height: 40px;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  margin-left: 15px;
+}

@@ -1,0 +1,28 @@
+.allproduct {
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 200px;
+}
+
+.allproduct__container {
+  width: 70%;
+}
+
+.allproduct__container > h1 {
+  margin-top: 20px;
+}
+.allproduct__containerHeaderLine {
+  background-color: #e45826;
+  height: 10px;
+  width: 20vw;
+  min-width: 150px;
+  margin-bottom: 50px;
+}
+
+.allproduct__containerProduct {
+  width: 100%;
+  height: 800px;
+}
