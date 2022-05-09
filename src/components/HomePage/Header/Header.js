@@ -3,8 +3,19 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import homeLogo from "../../images/home.png";
 import cartLogo from "../../images/cart.png";
+import { useStateValue } from "../../../StateProvider/StateProvider";
 
 function Header() {
+  const [{ basket }] = useStateValue();
+
+  const countItem = (basket) => {
+    let itemCnt = 0;
+    basket.forEach((item) => {
+      itemCnt += item.number;
+    });
+    return itemCnt;
+  };
+
   return (
     <div className="header">
       <div className="header__container">
@@ -17,9 +28,9 @@ function Header() {
             <img src={homeLogo} alt="" />
           </Link>
           {/* Cart */}
-          <Link className="header__containerLinkCart" to="/">
+          <Link className="header__containerLinkCart" to="/checkout">
             <img src={cartLogo} alt="" />
-            <div className="header__containerCartNumber">0</div>
+            <div className="header__containerCartNumber">{countItem(basket)}</div>
           </Link>
           {/* Login */}
           <button type="button" className="header__containerLinkButton">

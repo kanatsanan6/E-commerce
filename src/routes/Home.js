@@ -6,22 +6,23 @@ import axios from "axios";
 import requests from "../axios/request";
 import { Ellipsis } from 'react-awesome-spinners'
 import "./Home.css"
+import { useStateValue } from "../StateProvider/StateProvider";
 
 function Home() {
-  const [products, setProducts] = useState([]);
+  const [{products}] = useStateValue();
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(`${requests.fetchProduct}`);
-      setProducts(request.data);
-    }
-    fetchData();
-  }, []);
-  
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const request = await axios.get(`${requests.fetchProduct}`);
+  //     setProducts(request.data);
+  //   }
+  //   fetchData();
+  // }, []);
+  console.log(products)
 
   return (
     <div>
-      {products.length !== 0 ? (
+      {products !== null ? (
         <>
           <Header />
           <SlideCarousel products={products} />

@@ -1,14 +1,14 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./SlideCarousel.css";
 import Card from "./Card";
+import "bootstrap/dist/css/bootstrap.css";
 
-function SlideCarousel({products}) {
+function SlideCarousel({ products }) {
   const showProductId = ["1", "4", "8"];
   return (
     <div className="slidecarousel">
-      <Carousel variant="dark">
+      <Carousel variant="dark" fade={true}>
         {showProductId.map((productId) => (
           <Carousel.Item>
             <Card products={products} id={productId} />

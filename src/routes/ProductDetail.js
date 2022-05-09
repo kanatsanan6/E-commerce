@@ -1,13 +1,13 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Header from "../components/HomePage/Header/Header";
+import { useStateValue } from "../StateProvider/StateProvider";
 import "./ProductDetail.css";
 
 function ProductDetail() {
-  let { id } = useParams();
+  const [, dispatch] = useStateValue();
   const location = useLocation();
   const product = location.state;
-  console.log(product);
   return (
     <div className="productDetail">
       {/* Header */}
@@ -35,11 +35,21 @@ function ProductDetail() {
             <h1>$ {product.price.toFixed(2)}</h1>
             <h2>$ {(product.price * 1.3).toFixed(2)}</h2>
           </div>
-          <p className="productDetail__detailDecor">incl. of taxes and duties</p>
+          <p className="productDetail__detailDecor">
+            incl. of taxes and duties
+          </p>
 
           {/* Button */}
           <div className="productDetail__button">
-            <button className="productDetail__buttonAddToCart">
+            <button
+              className="productDetail__buttonAddToCart"
+              onClick={() => {
+                dispatch({
+                  type: "ADD_TO_BASKET",
+                  item: {...product, number: 1},
+                });
+              }}
+            >
               ADD TO CART
             </button>
             <button className="productDetail__buttonBuyNow">BUY NOW</button>

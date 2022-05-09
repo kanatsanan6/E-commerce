@@ -1,0 +1,70 @@
+.summary__subtotal {
+  width: 100%;
+}
+
+/* Total Price */
+.summary__subTotalPrice {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.summary__subTotalPrice > h1 {
+  font-size: 24px;
+  font-weight: 400;
+}
+.summary__subTotalPrice > h2 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* Total Shipment */
+.summary__subTotalShip {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: -10px;
+}
+.summary__subTotalShip > h1 {
+  font-size: 22px;
+  font-weight: 400;
+}
+.summary__subTotalShip > h2 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* Total */
+.summary__total {
+    margin-top: 10px;
+    width: 100%;;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: -12px;
+}
+.summary__total > h1 {
+    font-size: 33px;
+}
+.summary__total > h2 {
+    font-size: 26px;
+    font-weight: 400;
+  }
+
+  /* button */
+  .summary__button {
+    text-align: center;
+  }
+  .summary__button > button {
+    margin-top: 10px;
+    width: 400px;
+    height: 60px;
+    border: none;
+    font-size: 24px;
+    background-color: #df7048;
+    color: white;
+    font-weight: bolder;
+    border-radius: 20px;
+  }

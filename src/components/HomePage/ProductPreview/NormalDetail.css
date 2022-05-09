@@ -13,9 +13,7 @@
 .normaldetail:hover {
   transform: scale(1.05);
 }
-.normaldetail:hover > .normaldetail__containerPrice {
-  opacity: 0.5;
-}
+
 
 .normaldetail__container {
   z-index: 1;
@@ -34,7 +32,7 @@
 }
 
 .normaldetail__containerRating {
-  background-color: #e45826;
+  background-color: #df6c42;
   color: white;
   display: flex;
   align-items: center;
