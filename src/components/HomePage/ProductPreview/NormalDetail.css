@@ -1,5 +1,5 @@
 .normaldetail {
-  box-shadow: 2px 2px 5px 1px rgba(128, 128, 128, 0.226);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 10px;
   padding: 15px;
   margin-left: 20px;
@@ -7,9 +7,11 @@
   width: 300px;
   height: 270px;
   cursor: pointer;
+  background-color: white;
 }
-.normaldetail:hover > .normaldetail__container {
-  opacity: 0.5;
+
+.normaldetail:hover {
+  transform: scale(1.05);
 }
 .normaldetail:hover > .normaldetail__containerPrice {
   opacity: 0.5;
@@ -65,30 +67,3 @@
   margin-left: 10px;
 }
 
-.normaldetail__moreDetail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 100;
-  position: relative;
-  bottom: 95%;
-}
-.normaldetail__moreDetail > button {
-  height: 40px;
-  width: 220px;
-  margin: 5px;
-  background-color: white;
-  border: 1px solid #df7048;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgb(73, 73, 73);
-}
-
-.normaldetail__moreDetail > button:hover {
-  height: 40px;
-  width: 220px;
-  margin: 5px;
-  color: white;
-  background-color: #df7048;
-  border: 1px solid #df7048;
-}

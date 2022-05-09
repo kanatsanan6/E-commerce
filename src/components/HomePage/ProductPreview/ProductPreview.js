@@ -18,9 +18,9 @@ function ProductPreview() {
   return (
     <div className="productpreview">
       {products.map((product) => (
-        <>
+        <div>
           <NormalDetail product={product} />
-        </>
+        </div>
       ))}
     </div>
   );
