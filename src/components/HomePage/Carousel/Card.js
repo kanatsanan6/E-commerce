@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../../axios/axios";
-import requests from "../../../axios/request";
 import "./Card.css";
+import { useNavigate } from "react-router-dom";
 
-function Card(id) {
-  const [products, setProducts] = useState([]);
+function Card({ products, id }) {
+  const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(`${requests.fetchProduct}/${id.id}`);
-      setProducts(request.data);
-    }
-
-    fetchData();
+    setProduct(products[id - 1]);
   }, []);
 
-  const title = products.title;
-  const description = products.description;
-  const price = products.price;
+  const title = product.title;
+  const description = product.description;
+  const price = product.price;
   const fullPrice = price * 1.3;
-  const image = products.image;
+  const image = product.image;
 
   return (
     <div className="card">
@@ -30,7 +25,15 @@ function Card(id) {
           <h3>${price}</h3>
           <h4>${fullPrice.toFixed(2)}</h4>
         </div>
-        <button type="button" className="card_buyButton">
+        <button
+          onClick={() => {
+            navigate(`/product/${product.id}`, {
+              state: product,
+            });
+          }}
+          type="button"
+          className="card_buyButton"
+        >
           Buy now
         </button>
       </div>

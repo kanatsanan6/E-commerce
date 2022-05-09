@@ -21,6 +21,8 @@ function ProductDetail() {
         <div className="productDetail__detail">
           {/* name */}
           <h1>{product.title}</h1>
+          {/* Categories */}
+          <h3>{product.category}</h3>
           {/* description */}
           <h2>{product.description}</h2>
           {/* rating */}
@@ -33,6 +35,7 @@ function ProductDetail() {
             <h1>$ {product.price.toFixed(2)}</h1>
             <h2>$ {(product.price * 1.3).toFixed(2)}</h2>
           </div>
+          <p className="productDetail__detailDecor">incl. of taxes and duties</p>
 
           {/* Button */}
           <div className="productDetail__button">

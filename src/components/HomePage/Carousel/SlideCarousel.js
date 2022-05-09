@@ -4,14 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./SlideCarousel.css";
 import Card from "./Card";
 
-function SlideCarousel() {
+function SlideCarousel({products}) {
   const showProductId = ["1", "4", "8"];
   return (
     <div className="slidecarousel">
       <Carousel variant="dark">
         {showProductId.map((productId) => (
           <Carousel.Item>
-            <Card id={productId} />
+            <Card products={products} id={productId} />
           </Carousel.Item>
         ))}
       </Carousel>
