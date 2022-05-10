@@ -1,13 +1,38 @@
-import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../components/HomePage/Header/Header";
-import { useStateValue } from "../StateProvider/StateProvider";
 import "./ProductDetail.css";
 
 function ProductDetail() {
-  const [, dispatch] = useStateValue();
   const location = useLocation();
   const product = location.state;
+
+  const addToBasket = () => {
+    // Add to Cart (localStorage)
+    const prevBasket = JSON.parse(localStorage.getItem("basket"));
+    const found = prevBasket?.findIndex(
+      (basketItem) => basketItem.id === product.id
+    );
+    console.log("localStorage is updated: basket");
+    if (found >= 0) {
+      const newBasket = prevBasket.map((basketItem) =>
+        basketItem.id === product.id
+          ? { ...basketItem, number: basketItem.number + 1 }
+          : basketItem
+      );
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+      window.dispatchEvent(new Event("storage"));
+    } else if (found === undefined) {
+      const newBasket = [{ ...product, number: 1 }];
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+      window.dispatchEvent(new Event("storage"));
+    } else {
+      const newBasket = [...prevBasket, { ...product, number: 1 }];
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+      window.dispatchEvent(new Event("storage"));
+    }
+  };
+
   return (
     <div className="productDetail">
       {/* Header */}
@@ -45,12 +70,7 @@ function ProductDetail() {
           <div className="productDetail__button">
             <button
               className="productDetail__buttonAddToCart"
-              onClick={() => {
-                dispatch({
-                  type: "ADD_TO_BASKET",
-                  item: { ...product, number: 1 },
-                });
-              }}
+              onClick={addToBasket}
             >
               ADD TO CART
             </button>

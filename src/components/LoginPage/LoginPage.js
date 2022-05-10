@@ -6,31 +6,16 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [showRegis, setShowRegis] = useState(false);
 
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const register = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        updateProfile(auth.currentUser, {
-          displayName: user,
-        });
-        setUser("");
-        setEmail("");
-        setPassword("");
-      })
-      .catch((error) => {
-        console.error(`Error: ${error}`);
-      });
-  };
 
   const login = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -39,9 +24,21 @@ function LoginPage() {
         setUser("");
         setEmail("");
         setPassword("");
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => console.error(`Error: ${error}`));
+  };
+  const register = (user, email, password) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        updateProfile(auth.currentUser, {
+          displayName: user,
+        });
+        login(email, password);
+      })
+      .catch((error) => {
+        console.error(`Error: ${error}`);
+      });
   };
 
   return (
@@ -79,7 +76,7 @@ function LoginPage() {
       </div>
       {showRegis ? (
         <>
-          <button onClick={() => register(email, password)}>Register</button>
+          <button onClick={() => register(user, email, password)}>Register</button>
           <div>
             <h4>
               Already have an account?

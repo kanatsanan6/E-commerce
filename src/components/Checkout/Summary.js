@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useStateValue } from "../../StateProvider/StateProvider";
 import "./Summary.css";
 
 function Summary() {
-  const [{ basket }] = useStateValue();
+  // Get Local Storage
+  const [basket, setBasket] = useState([]);
+  useEffect(() => {
+    const getBasket = () => {
+      setBasket(JSON.parse(localStorage.getItem("basket")));
+    };
+    setBasket(JSON.parse(localStorage.getItem("basket")));
+    window.addEventListener("storage", getBasket);
+    return () => {
+      window.removeEventListener("storage", getBasket);
+    };
+  }, []);
 
   const calTotalPrice = (basket) => {
     let totalPrice = 0;

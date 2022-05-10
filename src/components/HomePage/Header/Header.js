@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import homeLogo from "../../images/home.png";
@@ -7,12 +7,27 @@ import { useStateValue } from "../../../StateProvider/StateProvider";
 import { Dropdown } from "react-bootstrap";
 import { auth } from "../../../firebase/firebase";
 import { signOut } from "firebase/auth";
+import { SettingsBackupRestoreTwoTone } from "@mui/icons-material";
 
 function Header() {
-  const [{ basket, user }] = useStateValue();
+  const [{ user }] = useStateValue();
+
+  // Get Local Storage
+  const [basket, setBasket] = useState([]);
+  useEffect(() => {
+    const getBasket = () => {
+      setBasket(JSON.parse(localStorage.getItem("basket")));
+    };
+    setBasket(JSON.parse(localStorage.getItem("basket")));
+    window.addEventListener("storage", getBasket);
+    return () => {
+      window.removeEventListener("storage", getBasket);
+    };
+  }, []);
+
   const countItem = (basket) => {
     let itemCnt = 0;
-    basket.forEach((item) => {
+    basket?.forEach((item) => {
       itemCnt += item.number;
     });
     return itemCnt;
@@ -27,6 +42,7 @@ function Header() {
         console.error(error);
       });
   };
+
 
   return (
     <div className="header">

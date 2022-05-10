@@ -54,6 +54,7 @@
   align-items: baseline;
   margin-top: 5px;
   margin-left: 15px;
+  text-decoration: none;
 }
 .header__containerLinkCart:hover {
   text-decoration: none;

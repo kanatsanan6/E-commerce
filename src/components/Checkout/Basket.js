@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Basket.css";
-import { useStateValue } from "../../StateProvider/StateProvider";
 import Item from "./Item";
 import Summary from "./Summary";
 
 function Basket() {
-  const [{ basket }] = useStateValue();
+  const [basket, setBasket] = useState([]);
+
+  useEffect(() => {
+    const getBasket = () => {
+      setBasket(JSON.parse(localStorage.getItem("basket")));
+    };
+    setBasket(JSON.parse(localStorage.getItem("basket")));
+    window.addEventListener("storage", getBasket);
+    return () => {
+      window.removeEventListener("storage", getBasket);
+    };
+  }, []);
+
   return (
     <div className="basket">
       <div className="basket__item">

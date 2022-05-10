@@ -13,6 +13,68 @@ function shortenName(string, n) {
 function Item({ product }) {
   const [, dispatch] = useStateValue();
 
+  // Add to Basket
+  const addToBasket = () => {
+    // localStorage
+    const prevBasket = JSON.parse(localStorage.getItem("basket"));
+    const found = prevBasket?.findIndex(
+      (basketItem) => basketItem.id === product.id
+    );
+    console.log("localStorage is updated: basket");
+    if (found >= 0) {
+      const newBasket = prevBasket.map((basketItem) =>
+        basketItem.id === product.id
+          ? { ...basketItem, number: basketItem.number + 1 }
+          : basketItem
+      );
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+    } else if (found === undefined) {
+      const newBasket = [{ ...product, number: 1 }];
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+    } else {
+      const newBasket = [...prevBasket, { ...product, number: 1 }];
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+    }
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  // Remove from basket
+  const removeFromBasket = () => {
+    // localStorage
+    const prevBasket = JSON.parse(localStorage.getItem("basket"));
+    const index = prevBasket.findIndex(
+      (basketItem) => basketItem.id === product.id
+    );
+    if (index >= 0) {
+      const newBasket = prevBasket;
+      newBasket.splice(index, 1);
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+    } else {
+      localStorage.setItem("basket", JSON.stringify(prevBasket));
+    }
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  // Decrease one item from basket
+  const decreaseItem = () => {
+    // localStorage
+    const prevBasket = JSON.parse(localStorage.getItem("basket"));
+    const index = prevBasket.findIndex(
+      (basketItem) => basketItem.id === product.id
+    );
+    if (index >= 0) {
+      const newBasket = prevBasket.map((basketItem) =>
+        basketItem.id === product.id && basketItem.number > 1
+          ? { ...basketItem, number: basketItem.number - 1 }
+          : basketItem
+      );
+      localStorage.setItem("basket", JSON.stringify(newBasket));
+    } else {
+      localStorage.setItem("basket", JSON.stringify(prevBasket));
+    }
+    window.dispatchEvent(new Event("storage"));
+  };
+
   return (
     <div className="item">
       <div className="item__image">
@@ -25,38 +87,11 @@ function Item({ product }) {
         </div>
         <h2>{product.category}</h2>
         <div className="item__quantity">
-          <button
-            onClick={() => {
-              dispatch({
-                type: "ADD_TO_BASKET",
-                item: product,
-              });
-            }}
-          >
-            +
-          </button>
+          <button onClick={addToBasket}>+</button>
           <h3>{product.number}</h3>
-          <button
-            onClick={() => {
-              dispatch({
-                type: "DECREASE_ONE_ITEM",
-                item: product,
-              });
-            }}
-          >
-            -
-          </button>
+          <button onClick={decreaseItem}>-</button>
         </div>
-        <button
-          onClick={() => {
-            dispatch({
-              type: "REMOVE_FROM_BASKET",
-              item: product,
-            });
-          }}
-        >
-          Remove
-        </button>
+        <button onClick={removeFromBasket}>Remove</button>
       </div>
     </div>
   );
