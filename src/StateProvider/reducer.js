@@ -1,13 +1,15 @@
 export const initialState = {
   products: null,
   basket: [],
+  user: null,
 };
 
 const reducer = (state, action) => {
+  console.log(action)
   switch (action.type) {
     case "FETCH_PRODUCT":
-      return {...state, products: action.item}
-      
+      return { ...state, products: action.item };
+
     case "ADD_TO_BASKET":
       const found = state.basket.findIndex(
         (basketItem) => basketItem.id === action.item.id
@@ -28,15 +30,17 @@ const reducer = (state, action) => {
         };
       }
     case "REMOVE_FROM_BASKET":
-      const index = state.basket.findIndex((basketItem) => basketItem.id === action.item.id);
+      const index = state.basket.findIndex(
+        (basketItem) => basketItem.id === action.item.id
+      );
       if (index >= 0) {
-        const newBasket = [...state.basket]
+        const newBasket = [...state.basket];
         newBasket.splice(index, 1);
-        return {...state, basket: [...newBasket]}
+        return { ...state, basket: [...newBasket] };
       } else {
-        return {...state}
+        return { ...state };
       }
-    
+
     case "DECREASE_ONE_ITEM":
       const index2 = state.basket.findIndex(
         (basketItem) => basketItem.id === action.item.id
@@ -45,7 +49,7 @@ const reducer = (state, action) => {
         return {
           ...state,
           basket: state.basket.map((basketItem) =>
-            (basketItem.id === action.item.id && basketItem.number > 1)
+            basketItem.id === action.item.id && basketItem.number > 1
               ? { ...basketItem, number: basketItem.number - 1 }
               : basketItem
           ),
@@ -56,6 +60,9 @@ const reducer = (state, action) => {
           basket: [...state.basket, action.item],
         };
       }
+
+    case "ADD_USER":
+      return {...state, user: action.user}
 
     default:
       return { ...state };

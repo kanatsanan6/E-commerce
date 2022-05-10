@@ -1,0 +1,41 @@
+.loginpage {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    max-width: 635px;
+    width: 80%;
+    height: fit-content;
+    padding: 32px;
+    margin: auto auto;
+}
+
+.loginpage p {
+    font-size: 19px;
+    margin-top: 20px;
+    margin-bottom: 3px;
+}
+.loginpage input {
+    font-size: 20px;
+    width: 90%;
+    height: 55px;
+    padding: 10px;
+}
+.loginpage button {
+    margin-top: 20px;
+    height: 50px;
+    width: 90%;
+    border: none;
+    border-radius: 10px;
+    background-color: #ec5d29;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+.loginpage h4 {
+    font-size: 20px;
+    font-weight: normal;
+}
+.loginpage a {
+    font-weight: bold;
+    color: #ec5d29 !important;
+    cursor: pointer;
+}

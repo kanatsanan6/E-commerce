@@ -86,3 +86,11 @@
   font-size: 18px;
   margin-left: 15px;
 }
+.header__dropdown {
+  margin-left: 20px;
+}
+#dropdown-basic {
+  background-color: #e45826 !important;
+  border: none !important;
+  font-weight: bold;
+}

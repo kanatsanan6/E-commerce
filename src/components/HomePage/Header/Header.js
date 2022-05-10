@@ -4,16 +4,28 @@ import { Link } from "react-router-dom";
 import homeLogo from "../../images/home.png";
 import cartLogo from "../../images/cart.png";
 import { useStateValue } from "../../../StateProvider/StateProvider";
+import { Dropdown } from "react-bootstrap";
+import { auth } from "../../../firebase/firebase";
+import { signOut } from "firebase/auth";
 
 function Header() {
-  const [{ basket }] = useStateValue();
-
+  const [{ basket, user }] = useStateValue();
   const countItem = (basket) => {
     let itemCnt = 0;
     basket.forEach((item) => {
       itemCnt += item.number;
     });
     return itemCnt;
+  };
+
+  const signout = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("user is signout");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -30,12 +42,29 @@ function Header() {
           {/* Cart */}
           <Link className="header__containerLinkCart" to="/checkout">
             <img src={cartLogo} alt="" />
-            <div className="header__containerCartNumber">{countItem(basket)}</div>
+            <div className="header__containerCartNumber">
+              {countItem(basket)}
+            </div>
           </Link>
           {/* Login */}
-          <button type="button" className="header__containerLinkButton">
-            Login
-          </button>
+          {user === null ? (
+            <Link to="/login">
+              <button type="button" className="header__containerLinkButton">
+                Login
+              </button>
+            </Link>
+          ) : (
+            <div className="header__dropdown">
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {user.displayName}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={signout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          )}
         </div>
       </div>
     </div>

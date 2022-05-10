@@ -1,5 +1,5 @@
 .summary__subtotal {
-  width: 100%;
+  width: 400px;
 }
 
 /* Total Price */
@@ -35,11 +35,14 @@
   font-size: 22px;
   font-weight: 400;
 }
+.summary > hr {
+  width: 400px;
+}
 
 /* Total */
 .summary__total {
     margin-top: 10px;
-    width: 100%;;
+    width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -55,7 +58,10 @@
 
   /* button */
   .summary__button {
-    text-align: center;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .summary__button > button {
     margin-top: 10px;
@@ -67,4 +73,10 @@
     color: white;
     font-weight: bolder;
     border-radius: 20px;
+  }
+
+  @media (max-width: 1400px) {
+    .summary__subtotal, .summary__total, .summary > hr, .summary__button > button, .summary__button {
+      width: 300px;
+    }
   }

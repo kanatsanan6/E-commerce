@@ -16,7 +16,9 @@ function ProductDetail() {
       {/* Detail */}
       <div className="productDetail__container">
         {/* image */}
-        <img src={product.image} />
+        <div className="productDetail__image">
+          <img src={product.image} />
+        </div>
         {/* detail */}
         <div className="productDetail__detail">
           {/* name */}
@@ -46,7 +48,7 @@ function ProductDetail() {
               onClick={() => {
                 dispatch({
                   type: "ADD_TO_BASKET",
-                  item: {...product, number: 1},
+                  item: { ...product, number: 1 },
                 });
               }}
             >

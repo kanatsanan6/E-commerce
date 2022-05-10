@@ -1,5 +1,5 @@
 .basket {
-  width: 70%;
+  width: 1300px;
   height: 100vh;
   display: flex;
   margin: auto auto;
@@ -33,3 +33,49 @@
   text-decoration: underline;
   text-align: left;
 }
+
+@media (max-width: 1400px) {
+  .basket {
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .basket {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .basket__summary {
+    margin-left: 600px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .basket {
+    width: 700px;
+  }
+  .basket__summary {
+    margin-left: 120px;
+  }
+}
+
+@media (max-width: 725px) {
+  .basket {
+    width: 500px;
+  }
+  .basket__summary {
+    margin-left: -200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .basket {
+    width: 420px;
+  }
+  .basket__summary {
+    margin-left: -200px;
+  }
+}
+

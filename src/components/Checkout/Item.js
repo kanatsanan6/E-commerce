@@ -20,8 +20,8 @@ function Item({ product }) {
       </div>
       <div className="item__detail">
         <div className="item__titlePrice">
-          <h1>{shortenName(product.title, 47)}</h1>
-          <h2>$ {(product.price * product.number).toFixed(2)}</h2>
+          <h1>{shortenName(product.title, 38)}</h1>
+          <h2>${(product.price * product.number).toFixed(2)}</h2>
         </div>
         <h2>{product.category}</h2>
         <div className="item__quantity">
