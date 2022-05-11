@@ -5,21 +5,41 @@ import homeLogo from "../../images/home.png";
 import cartLogo from "../../images/cart.png";
 import { useStateValue } from "../../../StateProvider/StateProvider";
 import { Dropdown } from "react-bootstrap";
-import { auth } from "../../../firebase/firebase";
+import { auth, database } from "../../../firebase/firebase";
 import { signOut } from "firebase/auth";
-import { SettingsBackupRestoreTwoTone } from "@mui/icons-material";
+import { ref, onValue } from "firebase/database";
 
 function Header() {
   const [{ user }] = useStateValue();
-
-  // Get Local Storage
   const [basket, setBasket] = useState([]);
+
+  // Get basket
   useEffect(() => {
     const getBasket = () => {
       setBasket(JSON.parse(localStorage.getItem("basket")));
     };
-    setBasket(JSON.parse(localStorage.getItem("basket")));
-    window.addEventListener("storage", getBasket);
+
+    if (user === null) {
+      // LocalStorage (unauth)
+      setBasket(JSON.parse(localStorage.getItem("basket")));
+      window.addEventListener("storage", getBasket);
+    } else {
+      // Database (auth)
+      const dbRef = ref(database, `users/${user.uid}`);
+      onValue(dbRef, (snapshot) => {
+        console.log("onValue has been executed");
+        if (snapshot.val() !== null) {
+          if (snapshot.val().basket !== undefined) {
+            setBasket(snapshot.val().basket);
+          } else {
+            setBasket([]);
+          }
+        } else {
+          setBasket([]);
+        }
+      });
+    }
+
     return () => {
       window.removeEventListener("storage", getBasket);
     };
@@ -42,7 +62,6 @@ function Header() {
         console.error(error);
       });
   };
-
 
   return (
     <div className="header">

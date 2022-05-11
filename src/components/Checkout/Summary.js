@@ -1,16 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { database } from "../../firebase/firebase";
 import { useStateValue } from "../../StateProvider/StateProvider";
 import "./Summary.css";
+import { ref, onValue } from "firebase/database";
 
 function Summary() {
-  // Get Local Storage
+  const [{ user }] = useStateValue();
   const [basket, setBasket] = useState([]);
+
+  // Get basket
   useEffect(() => {
     const getBasket = () => {
       setBasket(JSON.parse(localStorage.getItem("basket")));
     };
-    setBasket(JSON.parse(localStorage.getItem("basket")));
-    window.addEventListener("storage", getBasket);
+
+    if (user === null) {
+      // LocalStorage (unauth)
+      setBasket(JSON.parse(localStorage.getItem("basket")));
+      window.addEventListener("storage", getBasket);
+    } else {
+      // Database (auth)
+      const dbRef = ref(database, `users/${user.uid}`);
+      onValue(dbRef, (snapshot) => {
+        console.log("onValue has been executed");
+        if (snapshot.val() !== null) {
+          if (snapshot.val().basket !== undefined) {
+            setBasket(snapshot.val().basket);
+          } else {
+            setBasket([]);
+          }
+        } else {
+          setBasket([]);
+        }
+      });
+    }
+
     return () => {
       window.removeEventListener("storage", getBasket);
     };
