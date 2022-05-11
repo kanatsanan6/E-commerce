@@ -13,11 +13,15 @@ function Basket() {
   // Get basket
   useEffect(() => {
     const getBasket = () => {
-      setBasket(JSON.parse(localStorage.getItem("basket")));
+      if(localStorage.length !== 0) {
+        setBasket(JSON.parse(localStorage.getItem("basket")));
+      }
     };
     // localStorage
     if (user === null) {
-      setBasket(JSON.parse(localStorage.getItem("basket")));
+      if(localStorage.length !== 0) {
+        setBasket(JSON.parse(localStorage.getItem("basket")));
+      }
       window.addEventListener("storage", getBasket);
     } else {
       // Database (auth)

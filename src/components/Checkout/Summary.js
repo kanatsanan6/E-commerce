@@ -16,7 +16,9 @@ function Summary() {
 
     if (user === null) {
       // LocalStorage (unauth)
-      setBasket(JSON.parse(localStorage.getItem("basket")));
+      if(localStorage.length !== 0) {
+        setBasket(JSON.parse(localStorage.getItem("basket")));
+      }
       window.addEventListener("storage", getBasket);
     } else {
       // Database (auth)

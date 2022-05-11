@@ -8,20 +8,26 @@ import { Dropdown } from "react-bootstrap";
 import { auth, database } from "../../../firebase/firebase";
 import { signOut } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const [{ user }] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   const [basket, setBasket] = useState([]);
+  const navigate = useNavigate();
 
   // Get basket
   useEffect(() => {
     const getBasket = () => {
-      setBasket(JSON.parse(localStorage.getItem("basket")));
+      if (localStorage.length !== 0) {
+        setBasket(JSON.parse(localStorage.getItem("basket")));
+      }
     };
 
     if (user === null) {
       // LocalStorage (unauth)
-      setBasket(JSON.parse(localStorage.getItem("basket")));
+      if (localStorage.length !== 0) {
+        setBasket(JSON.parse(localStorage.getItem("basket")));
+      }
       window.addEventListener("storage", getBasket);
     } else {
       // Database (auth)
@@ -57,6 +63,13 @@ function Header() {
     signOut(auth)
       .then(() => {
         console.log("user is signout");
+        dispatch({
+          type: "ADD_USER",
+          user: null,
+        });
+        navigate("/");
+        localStorage.clear();
+        setBasket([]);
       })
       .catch((error) => {
         console.error(error);
