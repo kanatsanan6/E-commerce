@@ -3,16 +3,15 @@ import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqSKZfdT5b14DZEyDmYCqab2pmRM3qcuY",
-  authDomain: "e-commerce-bab72.firebaseapp.com",
-  projectId: "e-commerce-bab72",
-  storageBucket: "e-commerce-bab72.appspot.com",
-  messagingSenderId: "75542672487",
-  appId: "1:75542672487:web:505b8763ff3316339490c2",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_API_ID,
   // database
-  databaseURL: "https://e-commerce-bab72-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 

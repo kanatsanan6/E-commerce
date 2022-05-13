@@ -3,20 +3,19 @@ import { useLocation } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
-import "./Payment.css"
+
+import Header from "../HomePage/Header/Header";
 
 function Payment() {
   const location = useLocation();
 
   // Load Strip.js
-  const stripePromise = loadStripe(
-    "pk_test_51Ky8bjSJRXYOOaKx3KwUFaviEc12KGY7haqt3ygJYCTBRg1co5eDrEYUTFrnUVRiX4CiZggFLL7ZfY1xxHKzvu9300Z8uUzL1r"
-  );
-  const appearance = location.state.appearance;
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API);
   const options = location.state.options;
 
   return (
     <div className="payment">
+      <Header className="payment__header"/>
       <Elements options={options} stripe={stripePromise}>
         <CheckoutForm />
       </Elements>

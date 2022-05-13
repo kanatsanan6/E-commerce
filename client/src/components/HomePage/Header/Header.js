@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import homeLogo from "../../images/home.png";
-import cartLogo from "../../images/cart.png";
+import homeLogo from "./images/home.png";
+import cartLogo from "./images/cart.png";
 import { useStateValue } from "../../../StateProvider/StateProvider";
 import { Dropdown } from "react-bootstrap";
 import { auth, database } from "../../../firebase/firebase";

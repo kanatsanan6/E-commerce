@@ -1,10 +1,10 @@
 const express = require("express")
 const app = express();
 const cors = require("cors")
+const PORT = process.env.PORT || 4242;
 
-
-const stripe = require("stripe")("sk_test_51Ky8bjSJRXYOOaKxU0pOj8CmunjiC71xvuhPR6SJQBvCMhChIsCsrrE9qD73UjGcnQ2UdG6d8oTAnKlvDJzMadbJ00mQwHHY8k")
-
+require('dotenv').config()
+const stripe = require("stripe")(process.env.STRIPE_API)
 // cors
 app.use(cors())
 
@@ -35,4 +35,4 @@ app.post("/create-payment-intent", async (req, res) => {
     });
   });
   
-  app.listen(4242, () => console.log("Node server listening on port 4242!"));
+  app.listen(PORT, () => console.log(`Node server listening on port ${PORT}!`));
