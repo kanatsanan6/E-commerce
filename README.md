@@ -78,7 +78,7 @@ The design is inspired by [Sumukha210 E-Commerce Project](https://github.com/Sum
 git clone https://github.com/kanatsanan6/E-commerce
 ```
 
-#### 2. Install the dependancies.
+#### 2. Install the dependencies.
 
 - Client dependencies
 
@@ -93,8 +93,32 @@ npm install
 cd server
 npm install
 ```
+#### 3. Add Environment variables
 
-#### 3. Start the project
+- **Client:**..
+Register and get an API information from firebase authentication, Real-time Database, and Stripe.
+Create .dnv file in the root directory ( client folder ) and fill the below information
+
+```bash
+REACT_APP_API_KEY = "API_KEY"
+REACT_APP_AUTH_DOMAIN = "AUTH_DOMAIN"
+REACT_APP_PROJECT_ID = "PROJECT_ID"
+REACT_APP_STORAGE_BUCKET = "STORAGE_BUCKET"
+REACT_APP_MESSAGING_SENDER_ID = "MESSAGING_SENDER_ID"
+REACT_APP_API_ID = "API_ID"
+REACT_APP_DATABASE_URL = "DATABASE_URL"
+REACT_APP_STRIPE_API = "STRIPE_API"
+```
+
+- **Server:**..
+Register and get an API information from Stripe.
+Create .dnv file in the root directory ( server folder ) and fill the below information
+
+```bash
+STRIPE_API = "SECRET_API"
+```
+
+#### 4. Start the project
 
 - Client
 
