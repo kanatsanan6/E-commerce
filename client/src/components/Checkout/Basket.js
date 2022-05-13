@@ -27,7 +27,6 @@ function Basket() {
       // Database (auth)
       const dbRef = ref(database, `users/${user.uid}`);
       onValue(dbRef, (snapshot) => {
-        console.log("onValue has been executed");
         if (snapshot.val() !== null) {
           if (snapshot.val().basket !== undefined) {
             setBasket(snapshot.val().basket);
@@ -52,15 +51,15 @@ function Basket() {
         <h1>Basket</h1>
         {/* Item */}
         {basket.length === 0 ? (
-          <div>
+          <div className="basket__noitem">
             <h1 style={{ fontSize: "20px", fontWeight: "normal" }}>
               There are no items in your basket.
             </h1>
           </div>
         ) : (
           <div>
-            {basket.map((basketItem) => {
-              return <Item product={basketItem} />;
+            {basket.map((basketItem, index) => {
+              return <Item product={basketItem} key={index}/>;
             })}
           </div>
         )}

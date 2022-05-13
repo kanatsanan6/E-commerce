@@ -33,7 +33,6 @@ function Header() {
       // Database (auth)
       const dbRef = ref(database, `users/${user.uid}`);
       onValue(dbRef, (snapshot) => {
-        console.log("onValue has been executed");
         if (snapshot.val() !== null) {
           if (snapshot.val().basket !== undefined) {
             setBasket(snapshot.val().basket);
@@ -62,7 +61,6 @@ function Header() {
   const signout = () => {
     signOut(auth)
       .then(() => {
-        console.log("user is signout");
         dispatch({
           type: "ADD_USER",
           user: null,

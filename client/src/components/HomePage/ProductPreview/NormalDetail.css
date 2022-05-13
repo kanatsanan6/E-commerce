@@ -65,3 +65,20 @@
   margin-left: 10px;
 }
 
+@media (max-width: 1218px) {
+  .normaldetail {
+    width: 320px;
+    height: 320px;
+  }
+  .normaldetail__container {
+    height: 260px;
+  }
+  .normaldetail__container > img {
+    height: 170px;
+    margin: auto auto;
+    margin-bottom: 25px;
+  }
+  .normaldetail__containerPrice {
+    margin-top: 7px;
+  }
+}

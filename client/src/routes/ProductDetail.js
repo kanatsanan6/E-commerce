@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/HomePage/Header/Header";
 import "./ProductDetail.css";
 import { child, get, ref, set } from "firebase/database";
@@ -8,6 +8,7 @@ import { useStateValue } from "../StateProvider/StateProvider";
 
 function ProductDetail() {
   const location = useLocation();
+  const navigate = useNavigate();
   const product = location.state;
   const [{ user }] = useStateValue();
 
@@ -15,7 +16,6 @@ function ProductDetail() {
   const addToBasket = () => {
     // localStorage
     if (user === null) {
-      console.log("localStorage is updated: basket");
       const prevBasket = JSON.parse(localStorage.getItem("basket"));
       const found = prevBasket?.findIndex(
         (basketItem) => basketItem.id === product.id
@@ -37,7 +37,6 @@ function ProductDetail() {
     }
     // Database
     else {
-      console.log("Database is updated: basket");
       const dbRef = ref(database);
       get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
         let prevBasket = []
@@ -65,6 +64,11 @@ function ProductDetail() {
       });
     }
   };
+
+  const buyNow = () => {
+    addToBasket();
+    navigate("/checkout")
+  }
 
   return (
     <div className="productDetail">
@@ -107,7 +111,7 @@ function ProductDetail() {
             >
               ADD TO CART
             </button>
-            <button className="productDetail__buttonBuyNow">BUY NOW</button>
+            <button className="productDetail__buttonBuyNow" onClick={buyNow}>BUY NOW</button>
           </div>
         </div>
       </div>

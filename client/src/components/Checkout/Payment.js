@@ -7,7 +7,6 @@ import "./Payment.css"
 
 function Payment() {
   const location = useLocation();
-  console.log(location);
 
   // Load Strip.js
   const stripePromise = loadStripe(

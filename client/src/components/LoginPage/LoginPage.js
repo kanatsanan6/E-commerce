@@ -21,8 +21,6 @@ function LoginPage() {
 
   // Add to Basket
   const mergeBasket = (user) => {
-    console.log("Database is merged");
-    console.log(user);
     // Get basket from localStorage
     let localBasket = [];
     if (localStorage.length !== 0) {
@@ -50,7 +48,6 @@ function LoginPage() {
   const login = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(`userLogin: ${userCredential.user.email}`);
         setUsername("");
         setEmail("");
         setPassword("");

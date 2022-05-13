@@ -9,8 +9,8 @@ function SlideCarousel({ products }) {
   return (
     <div className="slidecarousel">
       <Carousel variant="dark" fade={true}>
-        {showProductId.map((productId) => (
-          <Carousel.Item>
+        {showProductId.map((productId, index) => (
+          <Carousel.Item key={index}>
             <Card products={products} id={productId} />
           </Carousel.Item>
         ))}

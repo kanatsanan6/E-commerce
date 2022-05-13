@@ -19,7 +19,6 @@ function Item({ product }) {
   const addToBasket = () => {
     // localStorage
     if (user === null) {
-      console.log("localStorage is updated: basket");
       const prevBasket = JSON.parse(localStorage.getItem("basket"));
       const found = prevBasket?.findIndex(
         (basketItem) => basketItem.id === product.id
@@ -41,7 +40,6 @@ function Item({ product }) {
     }
     // Database
     else {
-      console.log("Database is updated: basket");
       const dbRef = ref(database);
       get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
         let prevBasket = [];
@@ -87,7 +85,6 @@ function Item({ product }) {
       window.dispatchEvent(new Event("storage"));
     } // Database
     else {
-      console.log("Database is updated: basket");
       const dbRef = ref(database);
       get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
         let prevBasket = [];
@@ -132,7 +129,6 @@ function Item({ product }) {
     }
     // Database
     else {
-      console.log("Database is updated: basket");
       const dbRef = ref(database);
       get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
         let prevBasket = [];

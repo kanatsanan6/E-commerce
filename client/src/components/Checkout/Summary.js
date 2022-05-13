@@ -26,7 +26,6 @@ function Summary() {
       .then((data) => setClientSecret(data.clientSecret))
       .catch((error) => console.error(error));
   }, []);
-  console.log(clientSecret);
 
   const appearance = {
     theme: "stripe",
@@ -39,7 +38,6 @@ function Summary() {
   // Go to checkout
   useEffect(() => {
     if (showCheckout && clientSecret !== "") {
-      console.log("first")
       navigate("/payment", {
         state: {
           appearance: appearance,
@@ -66,7 +64,6 @@ function Summary() {
       // Database (auth)
       const dbRef = ref(database, `users/${user.uid}`);
       onValue(dbRef, (snapshot) => {
-        console.log("onValue has been executed");
         if (snapshot.val() !== null) {
           if (snapshot.val().basket !== undefined) {
             setBasket(snapshot.val().basket);
