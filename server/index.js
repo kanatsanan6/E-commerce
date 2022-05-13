@@ -7,7 +7,6 @@ require('dotenv').config()
 const stripe = require("stripe")(process.env.STRIPE_API)
 // cors
 app.use(cors())
-
 app.use(express.static("public"));
 app.use(express.json());
 
