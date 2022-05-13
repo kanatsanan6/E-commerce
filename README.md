@@ -1,7 +1,5 @@
 # E-SHOP-WEBSITE
 
-***
-
 ## Live Demo
 
 Click here for a live demo: [E-SHOP](https://e-shop-commerce-app.netlify.app/)
