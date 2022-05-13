@@ -20,6 +20,8 @@ The design is inspired by [Sumukha210 E-Commerce Project](https://github.com/Sum
 
 - React
 
+- React Context API
+
 - React Bootstrap
 
 - React Router Dom v6
