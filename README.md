@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# E-SHOP-WEBSITE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+***
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+Click here for a live demo: [E-SHOP](https://e-shop-commerce-app.netlify.app/)
 
-### `npm start`
+## About the Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Home page](https://github.com/kanatsanan6/E-commerce/blob/master/client/public/HomePage.PNG?raw=true)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+E-SHOP is a E-commerce website built by **React js (Frontend)** and **Node js (Backend).**
 
-### `npm test`
+Merchandises' information is powered by [Fake Store API](https://fakestoreapi.com/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The design is inspired by [Sumukha210 E-Commerce Project](https://github.com/Sumukha210/E-kart-website#redux-hooks).
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Front-End
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React Bootstrap
 
-### `npm run eject`
+- React Router Dom v6
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Axios
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Firebase ( Authentication and Real-time Database )
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Stripe ( Payment system )
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Netlify ( Deployment )
 
-## Learn More
+#### Back-End
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Node
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Express
 
-### Code Splitting
+- Cors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Stripe ( Payment System )
 
-### Analyzing the Bundle Size
+- Heroku ( Deployment )
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Functionalities
 
-### Making a Progressive Web App
+#### Basic Functionalities
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- User can see all of the products on Home page.
 
-### Advanced Configuration
+- User can see the product's detail on Product detail page by clicking on the product.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- User can add the product to busket ( with or without an authentication )
 
-### Deployment
+- User can see the summary of the basket including the total price of an order on Checkout page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- User can be able to increase and decrease the quantity of products from busket.
 
-### `npm run build` fails to minify
+- User can be able to remove the product from basket.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- User can checkout the order ( powered by Stripe ).
+
+#### Authentication
+
+- User can register and login to the website ( powered by firebase authentication ).
+
+- The items will still be in the basket once user re-logged in ( powered by firebase real-time database ). 
+
+- If there are any orders in the basket before logged in, the order will be merged with the existing order in the account once user logged in.
+
+## Installation
+
+#### 1. Clone the project repo
+
+```bash
+git clone https://github.com/kanatsanan6/E-commerce
+```
+
+#### 2. Install the dependancies.
+
+- Client dependencies
+
+```bash
+cd client
+npm install
+```
+
+- Server dependencies
+
+```bash
+cd server
+npm install
+```
+
+#### 3. Start the project
+
+- Client
+
+```bash
+npm start
+```
+
+- Server
+
+```bash
+npm start
+```
