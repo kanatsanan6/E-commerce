@@ -16,8 +16,8 @@ function LoginPage() {
   const [showRegis, setShowRegis] = useState(false);
 
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("youcanloginwiththis@email.com");
+  const [password, setPassword] = useState("test@1234");
 
   // Add to Basket
   const mergeBasket = (user) => {
