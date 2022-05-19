@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-Click here for a live demo: [E-SHOP](https://e-shop-commerce-app.netlify.app/)
+Live Demo: [E-SHOP](https://e-shop-commerce-app.netlify.app/)
 
 ## About the Project
 
